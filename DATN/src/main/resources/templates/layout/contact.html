@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<link rel="stylesheet" href="/assets/css/plugins.min.css"
+	type="text/css">
+<link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+
+<body>
+	<main class="row mt-2">
+
+
+		<div class="contact-area" ng-app="admin">
+
+			<div class="container">
+				<div class="contact-wrapper">
+					<div class="row">
+						<div class="col-12">
+							<div class="contact-form">
+								<div class="contact-title mb-30">
+									<h2 class="title">Gửi yêu cầu cho chúng tôi</h2>
+								</div>
+
+								<form name="myForm" class="contact-form-style" id="test-form"
+									action="https://script.google.com/macros/s/AKfycbxy9bzE-zasi4TOVQLtsPFq5T8Yw3-VPDcH3tXMm-eExZE7gQIrDOkXipdQTRPaE7U/exec"
+									method="get">
+									<div class="row">
+										<div class="col-lg-6">
+											<input name="Name" placeholder="Tên*" type="text"
+												ng-model="send.nameCus" required />
+										</div>
+										<div class="col-lg-6">
+											<input name="Email" placeholder="Email*" type="email"
+												ng-model="send.email" required />
+
+										</div>
+										<div class="col-lg-12 text-center">
+											<textarea name="CustomerMessages" ng-model="send.content"
+												placeholder="Tin nhắn của bạn*" required></textarea>
+											<button class="btn btn-primary" type="submit"
+												id="submit-form" ng-disabled="myForm.$toucher">Gửi tin nhắn</button>
+										</div>
+									</div>
+								</form>
+								<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+								<script type="text/javascript">
+									$(document)
+											.ready(
+													function() {
+														var submit = $("button[type='submit']");
+														submit
+																.click(function() {
+																	var data = $(
+																			'form#test-form')
+																			.serialize();
+																	$
+																			.ajax({
+																				type : 'GET',
+																				url : 'https://script.google.com/macros/s/AKfycbxy9bzE-zasi4TOVQLtsPFq5T8Yw3-VPDcH3tXMm-eExZE7gQIrDOkXipdQTRPaE7U/exec',
+																				dataType : 'json',
+																				crossDomain : true,
+																				data : data,
+																				success : function(
+																						data) {
+																					if (data == 'false') {
+																						alert('Send to your reqest not successfully. Contact Dukenguyen2612@gmail.com!');
+																					} else {
+																						alert('Your request was send to us! Thanks you!');
+																					}
+																					location
+																							.reload();
+																				}
+																			});
+																	return false;
+																});
+													});
+								</script>
+								<p class="form-messege"></p>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="contact-info">
+								<div class="single-contact">
+									<div class="icon-box">
+										<img src="/assets/images/icons/contact-1.png" alt="">
+									</div>
+									<div class="info-box">
+										<h5 class="title">Địa chỉ</h5>
+										<p>
+											162/2 Huỳnh Thị Hai Tân Chánh Hiệp Q12<br>
+									</div>
+								</div>
+								<div class="single-contact">
+									<div class="icon-box">
+										<img src="/assets/images/icons/contact-2.png" alt="">
+									</div>
+									<div class="info-box">
+										<h5 class="title">Số điện thoại</h5>
+										<p>
+											<a href="tel:0123456789">0877224419</a>
+										</p>
+
+									</div>
+								</div>
+								<div class="single-contact m-0">
+									<div class="icon-box">
+										<img src="/assets/images/icons/contact-3.png" alt="">
+									</div>
+									<div class="info-box">
+										<h5 class="title">Email</h5>
+										<p>
+											<a href="mailto:Dukenguyen2612@gmail.com">Dukenguyen2612@gmail.com
+											</a>
+										</p>
+
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.216058145177!2d106.61727591397651!3d10.871164960412454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752a053d3e3713%3A0x67fa07dcc127e5ae!2zMTYyLCAyIMSQLiBIdeG7s25oIFRo4buLIEhhaSwgVMOibiBDaMOhbmggSGnhu4dwLCBRdeG6rW4gMTIsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1669798818274!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

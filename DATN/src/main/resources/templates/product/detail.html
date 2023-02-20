@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<link rel="stylesheet" href="/assets/css/plugins.min.css"
+	type="text/css">
+<link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+<body>
+	<main class="row mt-2">
+		<span id="eventCount" th:text="${numDeviceEventsWithAlarm}"></span>
+		<div th:each="p:${list}"
+			class="product-details-area pt-100px pb-100px">
+			<div class="container">
+				<div class="row">
+					<div
+						class="col-lg-6 col-sm-12 col-xs-12 mb-lm-30px mb-md-30px mb-sm-30px">
+						<!-- Swiper -->
+						<div class="swiper-container zoom-top">
+							<div class="swiper-wrapper">
+								<div th:each="t:${list2}" class="swiper-slide">
+									<img class="img-responsive m-auto" style="height: 300px"
+										th:src="@{|/assets/images/${t.name}|}" alt=""> <a
+										class="venobox full-preview" data-gall="myGallery"
+										th:href="@{|/assets/images/${t.name}|}"> <i
+										class="fa fa-arrows-alt" aria-hidden="true"></i>
+									</a>
+								</div>
+
+							</div>
+						</div>
+						<div
+							class="swiper-container mt-20px zoom-thumbs slider-nav-style-1 small-nav">
+							<div class="swiper-wrapper">
+								<div th:each="t:${list2}" class="swiper-slide">
+									<img class="img-responsive m-auto" style="height: 100px"
+										th:src="@{|/assets/images/${t.name}|}" alt="">
+								</div>
+
+							</div>
+							<!-- Add Arrows -->
+							<div class="swiper-buttons">
+								<div class="swiper-button-next"></div>
+								<div class="swiper-button-prev"></div>
+							</div>
+						</div>
+
+					</div>
+					<!--  -->
+					<div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up"
+						data-aos-delay="200">
+						<div class="product-details-content quickview-content ml-25px">
+							<h2>[[${p.name}]]</h2>
+							<div class="pricing-meta" style="font-size: 30px">
+
+								<span class="price"> <span class="new">[[${#numbers.formatDecimal(p.price-(p.price*p.discount.number),
+										0, 'COMMA', 0, 'POINT')}]]</span>
+								</span>
+
+							</div>
+							<div class="pro-details-rating-wrap">
+								<div class="rating-product">
+									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+										class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+										class="fa fa-star"></i>
+								</div>
+								
+							</div>
+							<p class="mt-30px">[[${p.description}]]</p>
+							<div class="pro-details-color-size d-flex">
+								<!-- Right Side Start -->
+								<div class="select-shoing-wrap d-flex align-items-center">
+									<div class="shot-product">
+										<p>Màu:</p>
+									</div>
+									<div class="shop-select">
+										
+											<select class="shop-sort" onchange="location = this.value;">
+											
+												<option data-display="Balck" th:each="cl :${color}"
+													th:value="@{|/product/list/${cl.id}|}">[[${cl.color}]]</option>
+
+											</select>
+										
+									</div>
+								</div>
+								<!-- Right Side End -->
+								<!-- Right Side Start -->
+								<div
+									class="select-shoing-wrap d-flex align-items-center ml-30px">
+									<div class="shot-product">
+										<p>Loại:</p>
+									</div>
+									<div class="shop-select show">
+										<select class="shop-sort">
+											<option data-display="XL">[[${p.size}]] inch</option>
+
+										</select>
+									</div>
+								</div>
+								<!-- Right Side End -->
+							</div>
+							<div
+								class="pro-details-categories-info pro-details-same-style d-flex m-0">
+								<span>Mã hàng:</span>
+								<ul class="d-flex">
+									<li><a href="#">Ch-256xl</a></li>
+								</ul>
+							</div>
+							<div
+								class="pro-details-categories-info pro-details-same-style d-flex m-0">
+								<span>Hãng: </span>
+								<ul class="d-flex">
+									<li><a href="#">[[${p.brand.name}]]</a></li>
+
+								</ul>
+							</div>
+							<div
+								class="pro-details-categories-info pro-details-same-style d-flex m-0">
+								<span>Thể loại: </span>
+								<ul class="d-flex">
+									<li>[[${p.category.name}]]</li>
+
+								</ul>
+							</div>
+							<div
+								class="pro-details-categories-info pro-details-same-style d-flex m-0">
+								<span>Màu Sắc: </span>
+								<ul class="d-flex">
+									<li>[[${p.color}]]</li>
+								</ul>
+							</div>
+							<div class="pro-details-quality">
+								
+								<div class="pro-details-cart" th:if="${p.quantity} >0">
+									<a th:attr="ng-click=@{|cart.addcart(${p.id})|}"
+										class="add-cart">Thêm vào giỏ</a>
+								</div>
+								<div class="pro-details-cart" th:unless="${p.quantity} >0">
+									<a class="add-cart">Hết Hàng</a>
+								</div>
+								<th:block th:if="${#request.remoteUser}">
+									<div th:if="${ah==1}" style="margin-top: 10px">
+										<a id="btnHeart"
+											style="font-size: 30px; margin-left: 10px; margin-top: 12px"
+											th:attr="onclick='favoriteProduct(\''+${p.id}+'\')'"> <i
+											th:if="${favorite.status==false}"
+											class="bi bi-heart"></i> <i
+											th:if="${favorite.status==true}"
+											class="bi bi-heart-fill"></i>
+										</a>
+									</div>
+									<div th:unless="${ah==1}">
+										<a
+											style="font-size: 30px; margin-left: 10px; margin-top: 15px"
+											th:href="@{|/favorite/create/${p.id}|}"><i
+											class="bi bi-heart"></i></a>
+									</div>
+								</th:block>
+
+
+
+
+
+								<div class="pro-details-compare-wishlist pro-details-wishlist "
+									th:if="${p.quantity>0}">
+									<a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
+										class="pe-7s-refresh-2"></i></a>
+								</div>
+							</div>
+						</div>
+						<!-- product details dfescription area start -->
+						<div class="description-review-wrapper">
+							<div class="description-review-topbar nav">
+								<button data-bs-toggle="tab" data-bs-target="#des-details2">Thông tin</button>
+								<button class="active" data-bs-toggle="tab"
+									data-bs-target="#des-details1">Mô tả</button>
+								<button data-bs-toggle="tab" data-bs-target="#des-details3">Bình luận
+								</button>
+							</div>
+							<div class="tab-content description-review-bottom">
+								<div id="des-details2" class="tab-pane">
+									<div class="product-anotherinfo-wrapper text-start">
+										<ul>
+											<li><span>Màn hình:</span> [[${p.screen}]]</li>
+											<li><span>Bộ xử lý đồ họa:</span> [[${p.gpu}]]</li>
+											<li><span>Hệ điều hành:</span> [[${p.hdh}]]</li>
+											<li><span>Dung lượng pin:</span>[[${p.battery}]]</li>
+											<li><span>Sim</span> [[${p.sim}]]</li>
+
+										</ul>
+									</div>
+								</div>
+								<div id="des-details1" class="tab-pane active">
+									<div class="product-description-wrapper">
+										<p>Điện thoại di động, đặc biệt là điện thoại thông minh,
+											mang lại rất nhiều lợi ích trong thế giới hiện đại. Nó là
+											phương tiện liên lạc, là thiết bị giải trí và với Internet,
+											chúng ta có thể làm mọi thứ với chiếc điện thoại của mình.
+											Ngoài ra, nó giúp chúng ta học mọi thứ dễ dàng hơn.</p>
+									</div>
+								</div>
+								<div id="des-details3" class="tab-pane">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="review-wrapper">
+												<div th:each="re:${review}" class="single-review">
+													<div class="review-img">
+														<img th:src="@{|/assets/images/${re.user.photo}|}" alt="" />
+													</div>
+													<div class="review-content">
+														<div class="review-top-wrap">
+															<div class="review-left">
+																<div class="review-name">[[${re.user.username}]]</div>
+																<div th:if="${re.rating} ==5" class="rating-product">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+																</div>
+
+																<div th:if="${re.rating} ==4" class="rating-product">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i>
+
+																</div>
+
+																<div th:if="${re.rating} ==3" class="rating-product">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+
+																</div>
+
+																<div th:if="${re.rating} ==2" class="rating-product">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+
+																</div>
+
+																<div th:if="${re.rating} ==1" class="rating-product">
+																	<i class="fa fa-star"></i>
+
+																</div>
+
+																<div th:if="${re.rating} ==0" class="rating-product">
+
+																</div>
+															</div>
+															
+														</div>
+														<div class="review-bottom">
+															<p>[[${re.comment}]]</p>
+														</div>
+													</div>
+												</div>
+												<!-- <div class="single-review child-review">
+													<div class="review-img">
+														<img src="assets/images/review-image/2.png" alt="" />
+													</div>
+													<div class="review-content">
+														<div class="review-top-wrap">
+															
+														</div>
+														
+													</div>
+												</div> -->
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="ratting-form-wrapper pl-50">
+												<h3>Thêm đánh giá</h3>
+												<div class="ratting-form">
+													<form action="/review/add">
+														<input type="hidden" th:value="${p.id}" name="pid">
+														<div class="star-box">
+															<span>Đánh giá của bạn: <input name="rating"
+																placeholder="Đánh giá" type="number" min="0" max="5"  /></span>
+															<div class="rating-product">
+																<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																	class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																	class="fa fa-star"></i>
+															</div>
+														</div>
+														<div class="row">
+
+															<div class="col-md-12">
+																<div class="rating-form-style form-submit">
+																	<textarea name="comment" placeholder="Bình luận"></textarea>
+																	<th:block th:if="${#request.remoteUser}">
+																		<button
+																			class="btn btn-primary btn-hover-color-primary "
+																			type="submit" value="Submit">Submit</button>
+																	</th:block>
+																</div>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- product details description area end -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Product Area Start -->
+		<div class="product-area related-product">
+			<div class="container">
+				<!-- Section Title & Tab Start -->
+				<div class="row">
+					<div class="col-12">
+						<div class="section-title text-center m-0">
+							<h2 class="title">Sản phẩm liên quan</h2>
+
+						</div>
+					</div>
+				</div>
+				<!-- Section Title & Tab End -->
+				<div class="row">
+					<div class="col">
+						<div
+							class="new-product-slider swiper-container slider-nav-style-1">
+							<div class="swiper-wrapper">
+								<div th:each="o:${list.brand.products}" class="swiper-slide">
+									<!-- Single Prodect -->
+									<div class="product">
+										<span class="badges"> <span class="new">Mới</span>
+										</span>
+										<div class="thumb">
+											<a th:href="@{|/product/list/${o.id}|}" class="image"> <img
+												th:src="@{|/assets/images/${o.image}|}" alt="Product" /> <img
+												class="hover-image" th:src="@{|/assets/images/${o.image}|}"
+												alt="Product" />
+											</a>
+										</div>
+										<div class="content">
+											<span class="category"><a href="#">[[${o.brand.name}]]</a></span>
+											<h5 class="title">
+												<a href="single-product.html">[[${o.name}]]</a>
+											</h5>
+											<span class="price"> <span
+												th:if="${o.discount.number>0}"> <span class="old">[[${#numbers.formatDecimal(o.price,
+														0, 'COMMA', 0, 'POINT')}]] </span> <span class="new">[[${#numbers.formatDecimal(o.price-(o.price*o.discount.number),
+														0, 'COMMA', 0, 'POINT')}]] </span>
+											</span> <span th:unless="${o.discount.number>0}"> <span
+													class="new">[[${#numbers.formatDecimal(o.price-(o.price*o.discount.number),
+														0, 'COMMA', 0, 'POINT')}]] </span>
+											</span>
+											</span>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<!-- Add Arrows -->
+							<div class="swiper-buttons">
+								<div class="swiper-button-next"></div>
+								<div class="swiper-button-prev"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function favoriteProduct(id) {
+				var url = '/favorite/add/' + id;
+				$.get(url).done(function(data) {
+					$('#btnHeart').replaceWith(data);
+				});
+
+			}
+		</script>
+	</main>
+</body>
+</html>

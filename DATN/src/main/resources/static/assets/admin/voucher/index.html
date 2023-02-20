@@ -1,0 +1,16 @@
+<nav xmlns:th="http://www.thymeleaf.org">
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#edit1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Chỉnh sửa mã giảm giá</button>
+    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#list1" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Danh sách mã giảm giá</button>
+ 	 
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+ <div id="edit1" class="tab-pane fade active">
+		<div ng-include="'/assets/admin/voucher/_form.html'"></div>
+	</div>
+	<div id="list1" class="tab-pane fade  ">
+		<div ng-include="'/assets/admin/voucher/_table.html'"></div>
+	</div>
+</div>

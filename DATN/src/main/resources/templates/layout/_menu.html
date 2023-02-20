@@ -1,0 +1,206 @@
+
+<div xmlns:th="http://www.thymeleaf.org">
+	<header>
+		<!-- Header top area start -->
+	
+		<!-- Header top area end -->
+		<!-- Header action area start -->
+		<div class="header-bottom  d-none d-lg-block">
+			<div class="container">
+				<div class="row justify-content-between align-items-center">
+					<div class="col-lg-3 col">
+						<div class="header-logo">
+							<a href="/PhoneStore" class="text-light fs-1">Phone<span style="color: lightseagreen">Store</span></a>
+						</div>
+					</div>
+					<div class="col-lg-6 d-none d-lg-block">
+						<div class="search-element">
+							<form th:action="@{/product/search}" method="get">
+								<input type="text" placeholder="Tìm kiếm" name="keyword"
+									th:value="${keyword}" />
+								<button type="submit">
+									<i class="pe-7s-search"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+					<div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
+						<div class="inner">
+							<div class="head">
+								<span class="title">Danh Sách Yêu Thích</span>
+								<button class="offcanvas-close">×</button>
+							</div>
+							<div class="body customScroll">
+								<div th:if="${fa} != ''">
+								<ul th:each="f:${fa}" class="minicart-product-list">
+									<li><a th:href="@{|/product/list/${f.product.id}|}" class="image mb-4"><img width="70px" height="70px"
+											th:src="@{|/assets/images/${f.product.image}|}" /></a>
+										<div class="content">
+											<a th:href="@{|/product/list/${f.product.id}|}" class="title">[[${f.product.name}]]
+												</a>
+										</div></li>
+									
+								</ul>
+								</div>
+								<div th:if="${fa} == null">
+								<ul th:each="f:${session.fa}" class="minicart-product-list">
+									<li><a th:href="@{|/product/list/${f.product.id}|}" class="image mb-4"><img width="70px" height="70px"
+											th:src="@{|/assets/images/${f.product.image}|}" /></a>
+										<div class="content">
+											<a th:href="@{|/product/list/${f.product.id}|}" class="title">[[${f.product.name}]]
+												</a>
+										</div></li>
+									
+								</ul>
+								</div>
+							</div>
+							<div class="foot">
+								<div class="buttons">
+									<a href="/wish/list"
+										class="btn btn-dark btn-hover-primary mt-30px">Xem danh sách</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- OffCanvas Wishlist End -->
+					<!-- OffCanvas Cart Start -->
+					<div id="offcanvas-cart" class="offcanvas offcanvas-cart">
+						<div class="inner">
+							<div class="head">
+								<span class="title">Giỏ Hàng</span>
+								<span style="font-size: 20px">{{cart.amount | number:0}}</span>
+								<button class="offcanvas-close" >×</button>
+							</div>
+							<div class="body customScroll">
+								<ul ng-repeat="item in cart.items" class="minicart-product-list mb-4">
+									<li><a href="single-product.html" class="image"><img
+											th:src="@{|/assets/images/{{item.image}}|}" alt="Cart product Image"></a>
+										<div class="content">
+											<a href="#" class="title">{{item.name}}
+												</a> <span class="quantity-price">{{item.qty}} x {{item.price | number:0}}</span><span
+												class="amount">{{(item.qty)*((item.price) -(item.price*item.discount.number)) | number:2}} VNĐ</span> <a href="#" ng-click="cart.remove(item.id)" class="remove">×</a>
+										</div>
+										</li>
+								</ul>
+							</div>
+							<div class="foot">
+								<div class="buttons mt-30px">
+									<a href="/cart/view"
+										class="btn btn-dark btn-hover-primary mb-30px">Xem giỏ hàng</a> 
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col">
+						<div class="header-actions" style="margin-right: 100px">
+							<!-- Single Wedge Start -->
+							<a href="#offcanvas-wishlist"
+								class="header-action-btn offcanvas-toggle"> <i
+								class="pe-7s-like"></i>
+							</a>
+							<!-- Single Wedge End -->
+							<a href="#offcanvas-cart "
+								class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
+								<i class="pe-7s-shopbag"></i> <span class="header-action-num">{{cart.count}}</span>
+								 <!-- <span class="cart-amount">€30.00</span> -->
+							</a> <a href="#offcanvas-mobile-menu"
+								class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
+								<i class="pe-7s-menu"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Header action area end -->
+		<!-- Header action area start -->
+		<div class="header-bottom d-lg-none sticky-nav style-1">
+			<div class="container">
+				<div class="row justify-content-between align-items-center">
+					<div class="col-lg-6 d-none d-lg-block">
+						<div class="search-element">
+							<form action="#">
+								<input type="text" placeholder="Tìm kiếm" />
+								<button>
+									<i class="pe-7s-search"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+					<div class="col-lg-3 col">
+						<div class="header-actions">
+							<!-- Single Wedge Start -->
+							<a href="#offcanvas-wishlist"
+								class="header-action-btn offcanvas-toggle"> <i
+								class="pe-7s-like"></i>
+							</a>
+							<!-- Single Wedge End -->
+							<a href="#offcanvas-cart"
+								class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
+								<i class="pe-7s-shopbag"></i> <span class="header-action-num">01</span>
+								<!-- <span class="cart-amount">€30.00</span> -->
+							</a> <a href="#offcanvas-mobile-menu"
+								class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
+								<i class="pe-7s-menu"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Header action area end -->
+		<!-- header navigation area start -->
+			<div class="">
+		
+			<div class="header-nav-area d-none d-lg-block sticky-nav" >
+			<div class="">
+				<div class="header-nav">
+					<div class="main-menu position-relative">
+						<ul>
+							<li><a href="/PhoneStore">Trang Chủ</a></li>
+							<li><a href="/PhoneStore/home">Cửa Hàng</a></li>
+							<li><a href="/PhoneStore/about">Giới Thiệu</a></li>
+							<li><a href="/PhoneStore/contact">Liên hệ</a></li>
+							<th:block th:unless="${#request.remoteUser}">
+								<li><a th:href="@{/security/login/form}">Đăng nhập</a></li>
+							</th:block>
+							<th:block th:if="${#request.remoteUser}">
+								<li class="dropdown"><a href="#">Tài Khoản <i
+										class="fa fa-angle-down"></i></a>
+									<ul class="sub-menu">
+										<li
+											th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+											<a th:href="@{/admin/home/index}">Quản lý</a>
+											
+										</li>
+										<li><a href="/security/login/chang">Đổi mật khẩu</a></li>
+										<li><a href="/security/login/editprofile">Thay đổi thông tin</a></li>
+										<li><a th:href="@{/security/logoff}">Đăng xuất</a></li>
+									<li><a th:href="@{/order/list}">Đơn đặt hàng</a></li>
+									<li><a th:href="@{/order/list_fail}">Đơn đặt hàng đã hủy</a></li>
+									</ul></li>
+							</th:block>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- header navigation area end -->
+		<div class="mobile-search-box d-lg-none">
+			<div class="container">
+
+				<!-- mobile search start -->
+				<div class="search-element max-width-100">
+					<form action="#">
+						<input type="text" placeholder="Tìm kiếm" />
+						<button>
+							<i class="pe-7s-search"></i>
+						</button>
+					</form>
+				</div>
+				<!-- mobile search start -->
+			</div>
+		</div>
+	</header>
+</div>

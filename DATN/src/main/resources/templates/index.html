@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+
+<h3 style="text-align: center; margin-top: 10px"><i class="bi bi-paypal" style="color: #ADFF2F	;"></i> <i class="bi bi-paypal" style="color: #7FFF00	;"></i> <i class="bi bi-paypal" style="color: #32CD32;"></i></h3>
+<form method="post" th:action="@{/pay}">
+	<input style="width: 200px; margin-left: 550px" type="text" th:value="${tatol}" name="price" />
+	<button style="margin-bottom: 20px; font-size: 20px; color: #6495ED;" type="submit"><i class="fa-solid fa-right-to-bracket"></i></button>
+</form>
+</main>
+</body>
+</html>

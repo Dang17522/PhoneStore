@@ -1,0 +1,43 @@
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+<style>
+*{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+.pretty{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     color: white;
+     font-family: 'Roboto', sans-serif;
+     font-size: 16px;
+ }
+</style>
+<div class="card">
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th ng-repeat="role in roles">{{role.name}}</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="acc in admins">
+        <th scope="row">{{acc.username}}</th>
+        <td ng-repeat="role in roles"><div class="pretty p-switch p-fill">
+          <input type="checkbox" ng-checked="authority_of(acc,role)" ng-click="authority_changed(acc,role)"/>
+     		 <div class="state">
+            <label>Fill</label>
+        </div>
+      </div></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card-body">
+	
+  </div>
+</div>

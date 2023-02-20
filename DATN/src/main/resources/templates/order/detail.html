@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main th:object="${order}">
+	<div class="row mt-3 mb-3" >
+	<div class="col-4">
+				<div class="col-lg-3 col-md-5 mb-lm-30px"
+					style="width: 350px; margin-left: 100px">
+					<div class="cart-tax">
+						<div class="title-wrap">
+							<h4 class="cart-bottom-title section-bg-gray">Vị trí vận chuyển</h4>
+						</div>
+						<div class="tax-wrapper">
+
+							<div class="tax-select-wrapper">
+								<div class="tax-select">
+									<label> * Quận </label>
+									 
+										
+									<input th:field="*{district}" class="form-control" readonly>
+								</div>
+								<div class="tax-select">
+									<label> * Tỉnh </label> 
+									<input th:field="*{province}" class="form-control" readonly>
+									
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	<div class="col-7" style="margin-right: 100px; width: 710px; margin-left: 40px">
+		<div class="card">
+		<div class="card-header">Thông tin đặt hàng</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="form-group col-sm-4">
+					<div>Số hóa đơn:</div>
+					<input th:field="*{id}" class="form-control" readonly>
+				</div>
+				<div class="form-group col-sm-4">
+					<div>Người đặt hàng:</div>
+					<input th:field="*{user.username}" class="form-control" readonly>
+				</div>
+				<div class="form-group col-sm-4">
+					<div>Ngày đặt:</div>
+					<input th:field="*{createDate}" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="row">
+			<div class="form-group col-sm-4">
+					<div>Số điện thoại:</div>
+					<input th:value="*{phone}" class="form-control" readonly>
+				</div>
+			</div>
+			<input type="hidden" name="giamgia" th:value="${session.giamgia}">
+			<div class="row">
+				<div class="form-group col-sm-12">
+				
+					<div>Số nhà:</div>
+					<textarea th:field="*{address}" class="form-control" readonly></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	<div class="card" style="margin-left: 30px;margin-right: 30px; margin-bottom: 10px">
+		<div class="card-header">Chi tiết đơn hàng</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Tên sản phẩm</th>
+						<th scope="col">Hình ảnh</th>
+						<th scope="col">Giá</th>
+						<th scope="col">Màu</th>
+						<th scope="col">số lượng</th>
+
+						<th scope="col">Thành tiền</th>
+						<th scope="col">Trạng thái</th>
+						<th scope="col">Thanh Toán</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="detail: *{orderDetails}" th:object="${detail}">
+						<td>[[*{product.id}]]</td>
+						<td>[[*{product.name}]]</td>
+						<td><img class="img-responsive ml-15px"
+							th:src="@{|/assets/images/${detail.product.image}|}" width="60px"
+							height="60px" alt="" /></td>
+						<td>[[*{#numbers.formatDecimal(price-(price*product.discount.number),0,'COMMA',0,'POINT')}]]</td>
+						<td>[[${detail.product.color}]]</td>
+						<td>[[*{quantity}]]</td>
+
+						<td>[[*{#numbers.formatDecimal(total,0,'COMMA',0,'POINT')}]]</td>
+						<td>[[${order.ordertrack.status}]]</td>
+						<td>[[${order.status? 'Đã Thanh Toán':'Thanh toán khi nhận hàng'}]]</td>
+					</tr>
+
+				</tbody>
+			</table>
+			<div style="background-color: #00BFFF; color: #FFFFFF; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px">
+			<span style="margin-left: 900px" th:inline="text">Tiền giảm giá voucher: [[${#numbers.formatDecimal(order.discount, 0, 'COMMA', 0, 'POINT')}]] (VNĐ)</span>
+			<span style="margin-left: 900px" th:inline="text">Tổng tiền hóa đơn: [[${#numbers.formatDecimal(total-order.discount, 0, 'COMMA', 0, 'POINT')}]] (VNĐ)</span>
+			</div>
+			
+	</div>
+	</main>
+</body>
+</html>

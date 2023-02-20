@@ -1,0 +1,19 @@
+<nav xmlns:th="http://www.thymeleaf.org">
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#authority" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Phân quyền</button>
+    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#edit" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Chỉnh sửa người dùng</button>
+ 	 <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#list" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Danh sách người dùng</button>
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+<div id="authority" class="tab-pane fade active">
+		<div ng-include="'/assets/admin/authority/index.html'"></div>
+	</div>
+ <div id="edit" class="tab-pane fade ">
+		<div ng-include="'/assets/admin/authority/_form.html'"></div>
+	</div>
+	<div id="list" class="tab-pane fade  ">
+		<div ng-include="'/assets/admin/authority/_table.html'"></div>
+	</div>
+</div>

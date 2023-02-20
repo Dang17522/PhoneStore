@@ -1,0 +1,113 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-4 text-center">
+        <label for="image">
+          <img ng-src="{{'/assets/images/' + form.image}}" style="max-width: 100%;">
+        </label>
+      </div>
+     
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <div>Tên sản phẩm</div>
+            <input ng-model="form.name" class="form-control">
+          </div>
+          <div class="form-group col-sm-6">
+            <div>Giá</div>
+            <input ng-model="form.price" type="number" class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <div>Hình ảnh</div>
+            <input type="file" class="form-control" id="image" 
+            onchange="angular.element(this).scope().imageChanged(this.files)">
+          </div>
+          <div class="form-group col-sm-6">
+            <div>Loại sản phẩm</div>
+            <select ng-model="form.category.id" class="form-control">
+              <option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
+            </select>
+          </div>
+          
+            <div class="form-group col-sm-6">
+            <div>Hãng</div>
+            <select ng-model="form.brand.id" class="form-control">
+              <option ng-repeat="b in brands" ng-value="b.id">{{b.name}}</option>
+            </select>
+          </div>
+           <div class="form-group col-sm-6">
+            <div>Số lượng</div>
+            <input type="number" ng-model="form.quantity" class="form-control">
+          </div>
+           <div class="form-group col-sm-6">
+            <div>Giảm giá</div>
+            <select ng-model="form.discount.id" class="form-control">
+              <option ng-repeat="d in discounts" ng-value="d.id">{{d.number*100}} %</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-6">
+            <div>Kích thước (inch)</div>
+            <input ng-model="form.size" type="number"  class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <div>Màn hình</div>
+            <input ng-model="form.screen" class="form-control">
+          </div>
+          <div class="form-group col-sm-6">
+            <div>Bộ xử lý đồ họa</div>
+            <input ng-model="form.gpu" type="text" class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <div>Dung lượng pin</div>
+            <input ng-model="form.battery" class="form-control">
+          </div>
+          <div class="form-group col-sm-6">
+            <div>Sim</div>
+            <input ng-model="form.sim"  class="form-control">
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <div>Màu</div>
+            <input ng-model="form.color"  class="form-control">
+            
+          </div>
+           <div class="form-group col-sm-6">
+            <div>Hệ điều hành</div>
+            <input ng-model="form.hdh"  class="form-control">
+          </div>
+          <div class="row">
+           <div class="form-group col-sm-6">
+          <div>Tình trạng</div>
+
+					<label class="radio-inline"> <input 
+						style="width: 30px; height: 30px" ng-model="form.status"
+						ng-value="true" name="available" type="radio" > <br>Còn 
+					</label> <label class="radio-inline ml-2"> <input
+						style="width: 30px; height: 30px" ng-model="form.status"
+						ng-value="false" name="available" type="radio"> <br>Hết hàng
+					</label>
+					</div>
+          <div class="form-group col-sm-6">
+            <div>Mô tả</div>
+            <textarea ng-model="form.description"  class="form-control" rows="4"></textarea>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-center">
+    <button  ng-click="create()" type="button" class="btn " style="background-color: #0D6EFD; height: 50px; width: 120px">Thêm</button>
+    <button ng-click="update()" type="button" class="btn " style="background-color: #FFC107; height: 50px; width: 120px">Sửa</button>
+    <button ng-click="delete(form)" type="button" class="btn " style="background-color: red; height: 50px; width: 120px">Xóa</button>
+    <button ng-click="reset()" type="button" class="btn" style="background-color: #198754; height: 50px; width: 120px">Làm mới</button>
+  </div>
+</div>

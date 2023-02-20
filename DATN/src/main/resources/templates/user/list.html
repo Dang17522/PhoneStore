@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+	<meta charset="UTF-8">
+<body>
+<main>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">UserName</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+         <th scope="col">Image</th>
+          <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="u,index:${user}">
+        <th scope="row">[[${index.index}]]</th>
+        <td>[[${u.username}]]</td>
+        <td>[[${u.fullname}]]</td>
+        <td>[[${u.email}]]</td>
+       <td><img class="img-responsive ml-15px" th:src="@{|/assets/images/${u.photo}|}" width="60px" height="60px" alt="" /></td>
+        <td><a th:href="@{|/admin/user/detail/${u.username}|}" ><i class="fa-solid fa-pen"></i></a></td>
+      </tr>
+      
+    </tbody>
+  </table>
+</main>
+</body>
+</html>

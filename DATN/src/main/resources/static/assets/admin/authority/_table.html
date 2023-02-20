@@ -1,0 +1,58 @@
+<div class="card ">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Tên người dùng</th>
+				<th scope="col">Họ tên</th>
+				<th scope="col">Email</th>
+				<th scope="col">Mật khẩu</th>
+				<th scope="col">Số điện thoại</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in pager.items">
+				<th scope="col">{{item.username}}</th>
+				<th scope="col">{{item.fullname}}</th>
+				<th scope="col">{{item.email}}</th>
+				<th scope="col">{{item.password}}</th>
+				<th scope="col">{{item.phone}}</th>
+				<td>
+          <div class="btn-group btn-group-xs">
+            <button ng-click="edit(item)" type="button" class="btn"
+             style="font-size: 15px; width: 80px;height: 30px; display: grid; align-content: center; background-color:yellow;margin: 5px">
+            <i class="fa-solid fa-pen"></i></button>
+            <button ng-click="delete(item)" type="button" class="btn" 
+             style="font-size: 15px; width: 80px;height: 30px; display: grid; align-content: center; background-color:red;margin: 5px"
+            ><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        </td>	
+			</tr>
+		</tbody>
+	</table>
+	<div class="card-footer tetx-center">
+		<button ng-click="pager.first()" type="button"
+			class="btn btn-outline-primary"
+			style="background-color: #27b2e7; width: 150px; color: #fdfdff; font-size: 35px;">
+			<i class="fa-solid fa-angles-left"></i>
+		</button>
+		<button ng-click="pager.prev()" type="button"
+			class="btn btn-outline-success"
+			style="background-color: #27b2e7; width: 150px; color: #fdfdff; font-size: 35px;">
+			<i class="fa-solid fa-angle-left"></i>
+		</button>
+		<button class="btn btn-primary" style="font-size: 15px">{{pager.page
+			+ 1}} / {{pager.count}}</button>
+		<button ng-click="pager.next()" type="button"
+			class="btn btn-outline-warning"
+			style="background-color: #27b2e7; width: 150px; color: #fdfdff; font-size: 35px;">
+			<i class="fa-solid fa-angle-right"></i>
+		</button>
+		<button ng-click="pager.last()" type="button"
+			class="btn btn-outline-info"
+			style="background-color: #27b2e7; width: 150px; color: #fdfdff; font-size: 35px;">
+			<i class="fa-solid fa-angles-right"></i>
+		</button>
+
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<div xmlns:th="http://www.thymeleaf.org">
+	<section class="categories">
+		<div class="container">
+			<div class="row">
+				<div class="categories__slider owl-carousel">
+					<div th:each="p: ${itemss}">
+						<div class="col-lg-3">
+							<a th:href="@{|/product/detail/${p.id}|}"> <img
+								th:src="@{|/assets/images/${p.image}|}" class="card-img-top"
+								alt="..." width="15px" height="170px">
+								<h5>
+									<p th:utext="${p.name}" style="text-align: center;"></p>
+									
+								</h5>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div th:fragment="shopping_cart">
+			<div class="cart-main-area pt-70px pb-100px">
+				<div class="container">
+					<h3 class="cart-page-title">Sản phẩm trong giỏ hàng của bạn</h3>
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<form action="#">
+								<div class="table-content table-responsive cart-table-content" style="border: 1px solid;">
+									<table>
+										<thead>
+											<tr>
+												<th>Hình ảnh</th>
+												<th>Tên sản phẩm</th>
+												<th>Giá</th>
+												<th>Số lượng</th>
+												<th>Tổng tiền</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody >
+											<tr ng-repeat="item in cart.items">
+												<td class="product-thumbnail"><a href="#"><img
+														class="img-responsive ml-15px"
+														th:src="@{|/assets/images/{{item.image}}|}" alt="" /></a></td>
+												<td class="product-name"  ><a href="#" style="font-weight: bold;">{{item.name}}</a></td>
+												<td class="product-price-cart"><span class="amount">{{(item.price)
+														-(item.price*item.discount.number) | number :2}}<sup>đ</sup></span></td>
+												<td class="product-quantity">
+													<div>
+														<input ng-change="cart.saveToLocalStorage()" id="soluong"
+															ng-model="item.qty" type="number" th:attr="onchange='changeQuantity()'" min="1"  />
+													</div>
+												</td>
+												<td class="product-subtotal">{{(item.qty)*((item.price)
+													-(item.price*item.discount.number)) | number:2}}<sup>đ</sup></td>
+												<td class="product-remove"><a
+													ng-click="cart.remove(item.id)"><i class="fa fa-times"></i></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="cart-shiping-update-wrapper">
+											<div class="cart-shiping-update">
+												<a href="/shop/home"  style="background-color: #7B68EE">Tiếp tục mua sắm</a>
+											</div>
+											<div class="cart-clear">
+											
+												<a ng-click="cart.clear()"   style="background-color: #7B68EE" 
+													href="#">Xóa giỏ hàng</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+							<div th:if="${message}">
+								<label style="font-family: 'Patrick Hand', cursive;">[[${message}]]</label>
+							</div>
+							<div class="row"></div>
+							<div class="col-lg-12 ">
+								<div class="grand-totall" style="background-color: white">
+									<div class="title-wrap">
+										<h4 class="cart-bottom-title section-bg-gary-cart">Tổng số giỏ hàng</h4>
+									</div>
+									<h5>
+										Tổng sản phẩm <span>{{cart.amount | number:2}}</span>
+									</h5>
+									<div class="total-shipping">
+										<h5>Tiền vận chuyển</h5>
+										<ul>
+											
+											<li>Phí giao hàng: <span>30,000</span></li>
+											<li>Giảm giá: [[${session.giamgia}]]</li>
+										</ul>
+										<input type="hidden" name="giamgia"
+											th:value="${session.giamgia}">
+										<div class="title-wrap">
+											<h4 class="cart-bottom-title section-bg-gary-cart">Sử dụng mã giảm giá</h4>
+										</div>
+										<div class="discount-code-wrapper" style="background-color: white; border: 1px double black">
+
+											<div class="discount-code">
+												<p>Nhập mã phiếu giảm giá của bạn.</p>
+												<form action="/product/voucher" method="get">
+													<div class="row">
+														<div class="col-lg-6">
+															<select class="form-select mb-2"
+																aria-label="Default select example" name="product_id">
+																<option ng-repeat="item in cart.items"
+																	value="{{item.id}}">{{item.name}}</option>
+															</select>
+
+														</div>
+														<div class="col-lg-6">
+															<input style="border-radius: 5px; height: 38px"
+																type="text" name="voucher_code"  placeholder="Nhập mã giảm giá"/>
+														</div>
+													</div>
+													<button class="btn btn-outline-info" type="submit" style="background-color: #7B68EE" >Sử dụng mã giảm giá</button>
+												</form>
+											</div>
+
+										</div>
+									</div>
+									
+									<h4 class="grand-totall-title">
+										Tổng cộng <span>{{cart.amount +30000 -
+											[[${session.giamgia}]] | number:2}} </span>
+									</h4>
+									
+									<a th:href="@{/order/checkout}" style="background-color: #7B68EE" >Xác nhận</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		const changeQuantity = () =>{
+			var quantityId = document.getElementById("soluong");
+			if (quantityId.value <= 0) {
+				alert('Số lượng phải lớn hơn 0')
+				quantityId.value = 1;
+			}
+			
+		}
+	</script>
+		
+	</main>
+	
+	
+	
+</body>
+</html>

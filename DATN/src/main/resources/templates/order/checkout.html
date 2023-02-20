@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div th:replace="~{/cart/view :: shopping_cart}"></div>
+		<div class="cart-main-area pt-70px pb-100px">
+			<h1 style="text-align: center; text-transform: uppercase;">Thông
+				tin khách hàng</h1>
+			<div class="container">
+				<div class="row">
+
+					<div class="col-8">
+						<div style="border: 1px solid black;">
+							<div class="card-header" style="font-weight: bold;">Thông
+								tin giao hàng</div>
+							<div class="card-body">
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<div>Người nhận</div>
+										<div class="form-control" id="username">[[${#request.remoteUser}]]</div>
+									</div>
+									<div class="form-group col-sm-6">
+										<div>Ngày đặt hàng:</div>
+										<div class="form-control">{{order.createDate |
+											date:'dd-MM-yyyy'}}</div>
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<div>Số điện thoại</div>
+										<input type="number" ng-model="order.phone"
+											required="required" th:value="${session.phone}">
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-12">
+										<div>Địa chỉ giao hàng:</div>
+										<textarea ng-model="order.address" id="address"
+											class="form-control"></textarea>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<div>Thanh toán khi nhận hàng (mặc định):</div>
+									</div>
+									<div class="form-group col-sm-6">
+										<div class="row">
+											<div class="col-4">
+												Sử dụng thẻ:
+												
+											</div>
+											<div class="col-1">
+												
+												<form action="/">
+													<input type="hidden" name="price"
+														ng-value="{{cart.amount +30000}}">
+													<button style="font-size: 30px"><i class="bi bi-credit-card-2-front"></i></button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="card-footer">
+								<input type="hidden" name="giamgia"
+									th:value="${session.giamgia}">
+									<div class="row">
+									<div class="col">
+									<button  ng-click="order.purchase()" class="btn btn-outline-info"
+									type="submit" style="background-color: #7B68EE">Đặt
+									hàng</button>
+									</div>
+									<div class="col">
+									<div th:if="${thanhtoan}">
+									
+									<button disabled="disabled"  class="btn btn-outline-info"
+									 style="background-color: #7B68EE">[[${thanhtoan}]]</button>
+									</div>
+									</div>
+									</div>
+								
+									
+
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+
+						<div class="cart-tax"
+							style="background-color: white; border: 1px solid black;">
+
+							<h5 class="cart-bottom-title" style="font-size: 20px">Vị trí
+								vận chuyển</h5>
+
+							<div class="tax-wrapper">
+
+								<div class="tax-select-wrapper">
+									<div class="tax-select">
+										<label> * Quận </label> <select ng-model="order.district"
+											class="required">
+											<option value="Quận 2">Quận 2</option>
+											<option value="Quận 3">Quận 3</option>
+											<option value="Quận 4">Quận 4</option>
+											<option value="Quận 5">Quận 5</option>
+											<option value="Quận 6">Quận 6</option>
+											<option value="Quận 7">Quận 7</option>
+											<option value="Quận 8">Quận 8</option>
+											<option value="Quận 9">Quận 9</option>
+											<option value="Quận 10">Quận 10</option>
+											<option value="Quận 11">Quận 11</option>
+											<option value="Quận 12">Quận 12</option>
+											<option value="Quận Tân Bình">Quận Tân Bình</option>
+											<option value="Quận Bình Tân">Quận Bình Tân</option>
+											<option value="Quận Bình Thạnh">Quận Bình Thạnh</option>
+											<option value="Quận Thủ Đức">Quận Thủ Đức</option>
+										</select>
+									</div>
+									<br> <br>
+
+									<div class="tax-select">
+										<label> * Tỉnh </label> <select class="email s-email s-wid"
+											ng-model="order.province" id="provicen" name="provicen"
+											required="required">
+											<option selected="selected" value="TP Hồ Chí Minh">TP
+												Hồ Chí Minh</option>
+										</select>
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

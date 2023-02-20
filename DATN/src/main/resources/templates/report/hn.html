@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+</head>
+<body>
+	<table class="table mt-5" style="width: 800px; margin: auto;">
+			<thead>
+				<tr>
+					<tr>
+					<th scope="col">#</th>
+					<th scope="col">hóa đơn</th>
+					<th scope="col">Tên sản phẩm</th>
+					<th scope="col">Giá</th>
+					<th scope="col">Số lượng</th>
+				</tr>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="re,index:${report}">
+					<td >[[${index.index}]]</td>
+					<td>[[${re.orderid}]]</td>
+					<td>[[${re.name}]]</td>
+					<td>[[${{#numbers.formatDecimal(re.sum,0,'COMMA',2,'POINT')}}]]</td>
+					<td>[[${re.count}]]</td>
+					<td><a th:href="@{|/order/detail/${re.orderid}|}">Detail</a></td>
+				</tr>
+				<th th:each="re,index:${sum}" scope="row">Số Lượng: [[${re.count}]] <br> Tổng: [[${{#numbers.formatDecimal(re.sum,0,'COMMA',0,'POINT')}}]]</th>
+				<tr >
+					
+					
+				</tr>
+			</tbody>
+		</table>
+		
+		<div style="width: 900px; margin: auto;">
+			<canvas id="myChart" style="margin-top: 10px"></canvas>
+			
+		</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script th:inline="javascript">
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+	type: 'bar',
+	  options: {},
+    data: {
+        labels: [[${surveyMap.keySet()}]],
+        datasets: [{
+            label: 'Hôm nay: '+ [[${ngay}]] ,
+            data: [[${surveyMap.values()}]],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 3
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+</body>
+</html>

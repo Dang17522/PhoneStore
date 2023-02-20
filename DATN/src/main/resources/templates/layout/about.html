@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<link rel="stylesheet" href="/assets/css/plugins.min.css"
+	type="text/css">
+<link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+
+<body>
+	<main class="row mt-2">
+		<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+		<!-- Font Awesome icons (free version)-->
+		<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+			crossorigin="anonymous"></script>
+		<!-- Google fonts-->
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+			rel="stylesheet" type="text/css" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+			rel="stylesheet" type="text/css" />
+		<!-- Core theme CSS (includes Bootstrap)-->
+		<link href="/assets/css/about.css" rel="stylesheet" />
+		<div id="page-top">
+			<!-- Masthead-->
+
+			<!-- Portfolio Section-->
+			<section class="page-section portfolio" id="portfolio">
+				<div class="container">
+					<!-- Portfolio Section Heading-->
+					<h2
+						class="page-section-heading text-center text-uppercase text-secondary mb-0">Nhãn
+						Hàng Kinh Doanh</h2>
+					<!-- Icon Divider-->
+					<div class="divider-custom">
+						<div class="divider-custom-line"></div>
+						<div class="divider-custom-icon">
+							<i class="fas fa-star"></i>
+						</div>
+						<div class="divider-custom-line"></div>
+					</div>
+					<!-- Portfolio Grid Items-->
+					<div class="row justify-content-center">
+						<!-- Portfolio Item 1-->
+						<div class="col-md-6 col-lg-4 mb-5">
+							<div class="portfolio-item mx-auto" data-bs-toggle="modal"
+								data-bs-target="#portfolioModal1">
+								<div
+									class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+									<div
+										class="portfolio-item-caption-content text-center text-white">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div>
+								<img class="img-fluid"
+									src="/assets/img/portfolio/Apple-logo.png" alt="..." />
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-4 mb-5">
+							<div class="portfolio-item mx-auto" data-bs-toggle="modal"
+								data-bs-target="#portfolioModal2">
+								<div
+									class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+									<div
+										class="portfolio-item-caption-content text-center text-white">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div>
+								<img class="img-fluid" src="/assets/img/portfolio/logo-oppo.png"
+									alt="..." />
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-4 mb-5">
+							<div class="portfolio-item mx-auto" data-bs-toggle="modal"
+								data-bs-target="#portfolioModal3">
+								<div
+									class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+									<div
+										class="portfolio-item-caption-content text-center text-white">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div>
+								<img class="img-fluid"
+									src="/assets/img/portfolio/Realme-Logo.png" alt="..." />
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+							<div class="portfolio-item mx-auto" data-bs-toggle="modal"
+								data-bs-target="#portfolioModal5">
+								<div
+									class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+									<div
+										class="portfolio-item-caption-content text-center text-white">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div>
+								<img class="img-fluid" src="/assets/img/portfolio/Vivo_logo.png"
+									alt="..." />
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-4">
+							<div class="portfolio-item mx-auto" data-bs-toggle="modal"
+								data-bs-target="#portfolioModal6">
+								<div
+									class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+									<div
+										class="portfolio-item-caption-content text-center text-white">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div>
+								<img class="img-fluid"
+									src="/assets/img/portfolio/Xiaomi_logo.png" alt="..." />
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="page-section  text-white mb-0" id="about"
+				style="background-image: linear-gradient(#1E90FF, black);">
+				<div class="container">
+					<h2
+						class="page-section-heading text-center text-uppercase text-white"
+						style="font-family: 'Patrick Hand', cursive;">Về chúng tôi</h2>
+					<!-- Icon Divider-->
+					<div class="divider-custom divider-light">
+						<div class="divider-custom-line"></div>
+						<div class="divider-custom-icon">
+							<i class="fas fa-star"></i>
+						</div>
+						<div class="divider-custom-line"></div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4 ms-auto">
+							<p class="lead">Chúng tôi đảm bảo cung cấp sản phẩm chất
+								lượng. Nếu có nhầm lẫn hoặc lỗi chúng tôi sẽ hoàn lại 100% giá</p>
+						</div>
+						<div class="col-lg-4 me-auto">
+							<p class="lead">Chúng tôi bán đúng giá với thị trường và còn
+								đi kèm với dịch vụ chăm sóc khách hàng tốt nhất.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="portfolio-modal modal fade" id="portfolioModal1"
+				tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+				<div class="modal-dialog modal-xl" >
+					<div class="modal-content">
+
+						<div class="modal-body text-center pb-5" >
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-8">
+										<!-- Portfolio Modal - Title-->
+										<h2
+											class="portfolio-modal-title text-secondary text-uppercase mb-0">Apple</h2>
+										<!-- Icon Divider-->
+										<div class="divider-custom">
+											<div class="divider-custom-line"></div>
+											<div class="divider-custom-icon">
+												<i class="fas fa-star"></i>
+											</div>
+											<div class="divider-custom-line"></div>
+										</div>
+										<!-- Portfolio Modal - Image-->
+										<img class="img-fluid rounded mb-5"
+											src="/assets/img/portfolio/Apple-logo.png" alt="..." />
+										<!-- Portfolio Modal - Text-->
+										<p class="mb-4">Apple Inc. là một tập đoàn công nghệ đa
+											quốc gia của Mỹ có trụ sở chính tại Cupertino, California,
+											chuyên thiết kế, phát triển và bán thiết bị điện tử tiêu
+											dùng, phần mềm máy tính và các dịch vụ trực tuyến.</p>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Portfolio Modal 2-->
+			<div class="portfolio-modal modal fade" id="portfolioModal2"
+				tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-body text-center pb-5">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-8">
+										<!-- Portfolio Modal - Title-->
+										<h2
+											class="portfolio-modal-title text-secondary text-uppercase mb-0">Oppo</h2>
+										<!-- Icon Divider-->
+										<div class="divider-custom">
+											<div class="divider-custom-line"></div>
+											<div class="divider-custom-icon">
+												<i class="fas fa-star"></i>
+											</div>
+											<div class="divider-custom-line"></div>
+										</div>
+										<!-- Portfolio Modal - Image-->
+										<img class="img-fluid rounded mb-5"
+											src="/assets/img/portfolio/logo-oppo.png" alt="..." />
+										<!-- Portfolio Modal - Text-->
+										<p class="mb-4">OPPO Electronics Corp là nhà sản xuất
+											thiết bị điện tử, điện thoại di động Android Trung Quốc, có
+											trụ sở đặt tại Đông Hoản, Quảng Đông, công ty con của tập
+											đoàn điện tử BBK Electronics. OPPO cung cấp một số sản phẩm
+											chính như máy nghe nhạc MP3, eBook, DVD/Blu-ray và điện thoại
+											thông minh.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Portfolio Modal 3-->
+			<div class="portfolio-modal modal fade" id="portfolioModal3"
+				tabindex="-1" aria-labelledby="portfolioModal3" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-body text-center pb-5">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-8">
+										<!-- Portfolio Modal - Title-->
+										<h2
+											class="portfolio-modal-title text-secondary text-uppercase mb-0">RealMe</h2>
+										<!-- Icon Divider-->
+										<div class="divider-custom">
+											<div class="divider-custom-line"></div>
+											<div class="divider-custom-icon">
+												<i class="fas fa-star"></i>
+											</div>
+											<div class="divider-custom-line"></div>
+										</div>
+										<!-- Portfolio Modal - Image-->
+										<img class="img-fluid rounded mb-5"
+											src="/assets/img/portfolio/Realme-Logo.png" alt="..." />
+										<!-- Portfolio Modal - Text-->
+										<p class="mb-4">Realme là nhà sản xuất điện thoại thông
+											minh Android Trung Quốc có trụ sở tại Thâm Quyến. Thương hiệu
+											này được chính thức thành lập vào ngày 6 tháng 5 năm 2018,
+											sau khi tách ra khỏi OPPO.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Portfolio Modal 4-->
+			<div class="portfolio-modal modal fade" id="portfolioModal4"
+				tabindex="-1" aria-labelledby="portfolioModal4" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-body text-center pb-5">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-8">
+										<!-- Portfolio Modal - Title-->
+										<h2
+											class="portfolio-modal-title text-secondary text-uppercase mb-0">SamSung</h2>
+										<!-- Icon Divider-->
+										<div class="divider-custom">
+											<div class="divider-custom-line"></div>
+											<div class="divider-custom-icon">
+												<i class="fas fa-star"></i>
+											</div>
+											<div class="divider-custom-line"></div>
+										</div>
+										<!-- Portfolio Modal - Image-->
+										<img class="img-fluid rounded mb-5"
+											src="/assets/img/portfolio/samsung-logo.png" alt="..." />
+										<!-- Portfolio Modal - Text-->
+										<p class="mb-4">Samsung là một tập đoàn đa quốc gia của
+											Hàn Quốc có trụ sở chính đặt tại Samsung Town, Seocho, Seoul.
+											Tập đoàn sở hữu rất nhiều công ty con, chuỗi hệ thống bán
+											hàng cùng các văn phòng đại diện trên toàn cầu hoạt động dưới
+											tên thương hiệu mẹ. Đây là một trong những thương hiệu công
+											nghệ đắt giá nhất thế giới.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Portfolio Modal 5-->
+			<div class="portfolio-modal modal fade" id="portfolioModal5"
+				tabindex="-1" aria-labelledby="portfolioModal5" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-body text-center pb-5">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-8">
+										<!-- Portfolio Modal - Title-->
+										<h2
+											class="portfolio-modal-title text-secondary text-uppercase mb-0">Vivo</h2>
+										<!-- Icon Divider-->
+										<div class="divider-custom">
+											<div class="divider-custom-line"></div>
+											<div class="divider-custom-icon">
+												<i class="fas fa-star"></i>
+											</div>
+											<div class="divider-custom-line"></div>
+										</div>
+										<!-- Portfolio Modal - Image-->
+										<img class="img-fluid rounded mb-5"
+											src="/assets/img/portfolio/Vivo_logo.png" alt="..." />
+										<!-- Portfolio Modal - Text-->
+										<p class="mb-4">Vivo là một công ty Trung Quốc chuyên
+											thiết kế, phát triển và sản xuất điện thoại thông minh
+											Android, phụ kiện điện thoại thông minh, phần mềm và dịch vụ
+											trực tuyến. Vivo được thành lập năm 2009 tại Đông Hoản, Quảng
+											Đông, và là công ty con của tập đoàn BBK Electronics.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Portfolio Modal 6-->
+			<div class="portfolio-modal modal fade" id="portfolioModal6"
+				tabindex="-1" aria-labelledby="portfolioModal6" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-header border-0">
+							<button class="btn-close" type="button" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-lg-8">
+									<!-- Portfolio Modal - Title-->
+									<h2
+										class="portfolio-modal-title text-secondary text-uppercase mb-0">Xiaomi</h2>
+									<!-- Icon Divider-->
+									<div class="divider-custom">
+										<div class="divider-custom-line"></div>
+										<div class="divider-custom-icon">
+											<i class="fas fa-star"></i>
+										</div>
+										<div class="divider-custom-line"></div>
+									</div>
+									<!-- Portfolio Modal - Image-->
+									<img class="img-fluid rounded mb-5"
+										src="/assets/img/portfolio/Xiaomi_logo.png" alt="..." />
+									<!-- Portfolio Modal - Text-->
+									<p class="mb-4">Xiaomi Inc. là một Tập đoàn sản xuất hàng
+										điện tử Trung Quốc có trụ sở tại Thâm Quyến. Xiaomi là nhà sản
+										xuất điện thoại thông minh lớn thứ 2 thế giới; trong quí 3 năm
+										2021, Xiaomi đã chiếm gần 17% thị trường điện thoại thông minh
+										thế giới.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Bootstrap core JS-->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- Core theme JS-->
+		<script src="js/scripts.js"></script>
+		<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+		<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+		</div>
+	</main>
+</body>
+</html>

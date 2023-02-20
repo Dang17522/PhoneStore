@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<meta charset="UTF-8">
+<body>
+	<main>
+		<div class="container">
+			<div class="row">
+				<div class="col-2">
+					<img class="img-responsive"
+						th:src="@{|/assets/images/${user.photo}|}"
+						style="margin-top: 20px; margin-left: 120px; width: 180px; height: 180px; border-radius: 100%"
+						alt="" />
+				</div>
+				<div class="col-10">
+					<div class="row" style="margin-left: 200px">
+						<div class="col-5">
+							<label for="formGroupExampleInput" class="form-label">UserName</label>
+							<input type="text" class="form-control" readonly name="username"
+								th:field="${user.username}" id="formGroupExampleInput">
+						</div>
+						<div class="col-5">
+							<label for="formGroupExampleInput" class="form-label">FullName</label>
+							<input type="text" class="form-control" readonly name="fullname"
+								th:field="${user.fullname}" id="formGroupExampleInput">
+						</div>
+					</div>
+					<div class="row" style="margin-left: 200px">
+						<div class="col-5">
+							<label for="formGroupExampleInput" class="form-label">Email</label>
+							<input type="text" class="form-control" readonly name="email"
+								th:field="${user.email}" id="formGroupExampleInput">
+						</div>
+						<div class="col-5">
+							<label for="formGroupExampleInput" class="form-label">Phone</label>
+							<input type="text" class="form-control" readonly name="email"
+								th:field="${user.phone}" id="formGroupExampleInput">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Address</th>
+					<th scope="col">Date</th>
+					
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="detail: ${order}" th:object="${detail}">
+					<th scope="col">[[*{id}]]</th>
+					<th scope="col">[[*{address}]], [[*{district}]], [[*{province}]] </th>
+					<th scope="col">[[*{createDate}]]</th>
+					 <td><a th:href="@{|/order/detail/*{id}|}" class="btn btn-outline-primary">Search</a></td>
+				</tr>
+				 
+			</tbody>
+		</table>
+		</div>
+	</main>
+</body>
+</html>

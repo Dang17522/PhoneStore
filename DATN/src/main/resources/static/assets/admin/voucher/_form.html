@@ -1,0 +1,75 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <input type="hidden" ng-model="form.id" >
+      <div class="row">
+     
+          <div class="form-group col-sm-6">
+            <div>Mã giảm giá</div>
+            <div class="row">
+            <div class="col-10">
+             <input ng-model="form.voucherCode" class="form-control" id="ramdom">
+            </div>
+            <div class="col-2" >
+             <button  ng-click="random()" type="button" class="btn " style="background-color: #FFFF00; height: 50px; width: 50px"><i class="fa-solid fa-shuffle"></i></button>
+            </div>
+            </div>
+           
+            
+          </div>
+          <div class="form-group col-sm-6">
+            <div>Người dùng tối đa</div>
+            <input ng-model="form.maxUser" class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <div>Số tiền giảm giá</div>
+            <input type="number" ng-model="form.discountAmount" class="form-control">
+          </div>
+          <div class="form-group col-sm-6">
+            <div>Trạng thái</div>
+            
+              <label class="radio-inline"> 
+                <input style="width: 30px; height: 30px" ng-model="form.status" ng-value="true" name="available" type="radio">
+              	 <br>Còn
+              </label>
+              
+              <label class="radio-inline ml-2"> 
+                <input style="width: 30px; height: 30px" ng-model="form.status" ng-value="false" name="available" type="radio">
+              	 <br>Không sử dụng
+              </label>
+            
+          </div>
+          </div>
+           <div class="row">
+     
+          <div class="form-group col-sm-6">
+            <div>Ngày bắt đầu</div>
+            <input type="date" ng-model="form.startDate" class="form-control">
+          </div>
+          <div class="form-group col-sm-6">
+            <div>Ngày kết thúc</div>
+            <input type="date" ng-model="form.endDate" class="form-control">
+          </div>
+        </div>
+          
+        <div class="row">
+         <div class="form-group col-sm-6">
+            <div>Sản phẩm</div>
+            <select ng-model="form.product.id" class="form-control">
+              <option ng-repeat="c in products" ng-value="c.id">{{c.name}} ({{c.color}})</option>
+            </select>
+          </div>
+         
+      </div>
+    
+  </div>
+  <div class="card-footer text-center">
+    <button  ng-click="create()" type="button" class="btn " style="background-color: #0D6EFD; height: 50px; width: 120px">Thêm</button>
+    <button ng-click="update()" type="button" class="btn " style="background-color: #FFC107; height: 50px; width: 120px">Sửa</button>
+    <button ng-click="delete(form)" type="button" class="btn " style="background-color: red; height: 50px; width: 120px">Xóa</button>
+    <button ng-click="reset()" type="button" class="btn" style="background-color: #198754; height: 50px; width: 120px">Làm mới</button>
+  </div>
+</div>
+</div>
